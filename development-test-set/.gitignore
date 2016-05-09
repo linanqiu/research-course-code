@@ -1,0 +1,6 @@
+.DS_Store
+.idea/
+data/
+models/
+reddit_vocabs_reference/
+reddit_vocabs_reference_old/

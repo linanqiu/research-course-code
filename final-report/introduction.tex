@@ -1,0 +1,34 @@
+\subsection{Problem Definition}
+
+\subsubsection{Codewords}
+
+I first defined codewords as words that are used differently from its ``normal'' meaning. For example, if a group of rogue traders in a bank use the word ``cheeseburger'' to denote insider information, then ``cheeseburger'' is used to in a way that is different from its usual meaning of a succulent dinner.
+
+This problem definition can be constructed around the standard NLP literature. In the popular approach of word embeddings, the ``meaning'' of a word is usually taken to be its ``context'', or the other words that surround the given word as defined by \cite{mikolov2013distributed}. Hence, saying that ``cheeseburger'' deviates from its usual meaning under this paradigm means that in normal circumstances, ``cheeseburger'' should appear around the words ``lunch'', ``beef'' etc. while the codeword ``cheeseburger'' should appear near words like ``finance'' and ``trade''. In other words, codewords are words with contexts as they are used normally, and encoded contexts that are used by a specific group of people in a specific corpus.
+
+\subsubsection{Communities}
+
+Codewords also happen to be used by a subset of a population. I refer to this subset of population as a community. For example, traders committing fraud do not usually constitute the entirety of a company's employees. Instead, it is usually a single department or a select group of people within a department. Hence, codewords are also words that are used in an exclusive context by a community.
+
+\subsubsection{Codewords in Communities}
+
+Then, we can formally define codewords as words that
+
+\begin{itemize}
+\item possess a context that is significantly different from the context under which it is usually used
+\item used by a specific community of people within a population
+\end{itemize}
+
+\subsection{Existing Work}
+
+I started on the project in September 2015. By that time, I was fortunate to continue on the work of summer researchers under Apoorv. Specifically, I inherited the following projects.
+
+\subsubsection{Reference Corpus}
+
+An approach to the codeword problem is to define a reference corpus. Then, we have two corpora -- the codeword corpus $C_c$ with the codewords and the reference corpus without codewords $C_r$. For example, the codeword corpus can be the Enron corpus while the reference corpus is 20 News Group. We can generate word embeddings for both corpora and compare those embeddings to find codewords.
+
+\subsubsection{Comparison of Cosine Distance and Matrix Distance}
+
+Then, the summer researchers computed the cosine distances of all embeddings in both corpus: $\mathbf{V_c}$ and $\mathbf{V_r}$. Now the embedding of a given word is random, but the distribution of the entire corpus should be normal (I personally verified this hypothesis). Then, one can rotate the matrix $\mathbf{V_c}$ to match, as much as possible, $\mathbf{V_r}$ and find the outliers. These would be words that are used in a relatively different manner in both corpus. Going off the first definition of a codeword, this will be a codeword.
+
+This measure did not produce significant results, though the matrix rotation problem in and of itself was an interesting mathematics problem. The results contained far too many false positives, and the reference corpus chosen (20 News Group) did not contain some of the codewords that were supposed to be in the Enron corpus (for example ``raptor''). This made the two difference senses (one for the original sense as a dinosaur and the other as a finance entity) undetectable.

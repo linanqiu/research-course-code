@@ -1,0 +1,13 @@
+This section details the additional work I did that do not fit within this main body of research.
+
+\section{Reddit Scraper}
+
+I built a \texttt{node.js} asynchronous web scraper for Reddit, currently hosted at \url{https://github.com/linanqiu/omega-red}. The scraper took around two weeks to build, allowing me access to a very nicely partitioned community dataset that is central to this entire research.
+
+\section{GPU Implementation of Word2Vec}
+
+I verified that the existing GPU implementation of Word2Vec produces erroneous results. \url{https://gist.github.com/linanqiu/e967559d535def1e6f5b931e9b580c58}
+
+\section{Clustering Enron Entities}
+
+I also performed clustering analysis on the Enron entity embeddings. \url{https://gist.github.com/linanqiu/92f0a1cee7663de2ef9df4a042ccfe01}. The results of this experiment can be used to label Enron emails with community labels. This result can then be fed into my community histogram model, producing codewords for the Enron corpus.

@@ -1,0 +1,54 @@
+\documentclass[11pt]{scrartcl}
+\usepackage{dominatrix}
+\usepackage{solarized-light}
+\usepackage[toc,page]{appendix}
+
+\lstset{
+language=python,
+basicstyle=\ttfamily\footnotesize
+}
+
+\title{Research Summary}
+\subject{Research Courses COMS W3998 and COMS W4901}
+\author{Linan Qiu\\\texttt{lq2137}}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{abstract.tex}
+\end{abstract}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+
+\input{introduction.tex}
+
+\section{Naive Experiments}
+
+\input{naive-experiments.tex}
+
+\section{Synthetic Corpus}
+
+\input{synthetic-corpus.tex}
+
+\section{Word Similarity Approach}
+
+\input{word-similarity.tex}
+
+\section{Polysemic Approach}
+
+\input{polysemy.tex}
+
+\begin{appendices}
+\input{appendix.tex}
+\end{appendices}
+
+\bibliographystyle{ieeetr}
+\bibliography{biblio}
+
+\end{document}

@@ -1,0 +1,30 @@
+- Problem Definition
+  - What are codewords
+  - What are communities
+  - How do communities use codewords
+- Existing Work
+  - Matrix rotation
+  - Comparison of Cosine Distance
+- First experiments
+  - Naive Cosine Distance Comparison
+  - Naive Word Similarity Comparison
+  - Resulted in need for synthetic corpus creation
+- Synthetic Corpus Creation
+  - Process
+  - WSJ Corpus
+  - Reddit Corpus
+- Simple Word2Vec word similarity
+  - On WSJ Corpus vs Reference WSJ Corpus
+  - On WSJ Corpus vs External Reference Corpus
+  - On Reddit (entire)
+  - On Reddit (subcommunity)
+  - Verifying that this is a subcommunity problem (only on subcommunity)
+- Employing Polysemy
+  - Relating back to context
+  - Modifications to Arvind's algorithm
+  - Preliminary results
+
+Extra results
+- Reddit scraper
+- Verification of GPU Algorithm
+- Clustering of Embeddings for Enron

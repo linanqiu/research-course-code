@@ -1,0 +1,775 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass{article}
+
+    
+    
+    \usepackage{graphicx} % Used to insert images
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{color} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage{ulem} % ulem is needed to support strikethroughs (\sout)
+    
+
+    
+    
+    \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+    \definecolor{darkorange}{rgb}{.71,0.21,0.01}
+    \definecolor{darkgreen}{rgb}{.12,.54,.11}
+    \definecolor{myteal}{rgb}{.26, .44, .56}
+    \definecolor{gray}{gray}{0.45}
+    \definecolor{lightgray}{gray}{.95}
+    \definecolor{mediumgray}{gray}{.8}
+    \definecolor{inputbackground}{rgb}{.95, .95, .85}
+    \definecolor{outputbackground}{rgb}{.95, .95, .95}
+    \definecolor{traceback}{rgb}{1, .95, .95}
+    % ansi colors
+    \definecolor{red}{rgb}{.6,0,0}
+    \definecolor{green}{rgb}{0,.65,0}
+    \definecolor{brown}{rgb}{0.6,0.6,0}
+    \definecolor{blue}{rgb}{0,.145,.698}
+    \definecolor{purple}{rgb}{.698,.145,.698}
+    \definecolor{cyan}{rgb}{0,.698,.698}
+    \definecolor{lightgray}{gray}{0.5}
+    
+    % bright ansi colors
+    \definecolor{darkgray}{gray}{0.25}
+    \definecolor{lightred}{rgb}{1.0,0.39,0.28}
+    \definecolor{lightgreen}{rgb}{0.48,0.99,0.0}
+    \definecolor{lightblue}{rgb}{0.53,0.81,0.92}
+    \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
+    \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+    
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Codeword Development Dataset}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=blue,
+      linkcolor=darkorange,
+      citecolor=darkgreen,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    Done by Linan Qiu
+\href{https://github.com/linanqiu}{(github.com/linanqiu)} for TextIQ
+
+    In this notebook, we generate a development / test dataset for the
+codeword detection problem.
+
+The codeword detection problem can be framed as the following:
+
+\begin{itemize}
+\tightlist
+\item
+  A codeword is a word that is used in a different context from its
+  usual context. (eg. using \texttt{cheeseburger} to denote
+  \texttt{equities} in an email between equities traders)
+\item
+  Given a corpus containing codewords (\textbf{codeword corpus}) and a
+  reference corpus not containing codewords (\textbf{reference corpus}),
+  find codewords in the codeword corpus.
+\end{itemize}
+
+As far as the author knows, no dataset specifically containing a known
+list of codewords exist. Hence, a synthetic dataset is needed to
+facilitate experiments for this problem.
+
+\section{Approach Overview}\label{approach-overview}
+
+To generate a synthetic codeword corpus, we do the following steps
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Get a reference corpus containing little to no codewords
+\item
+  Select \(|\mathbf{x}|\) words as codewords. Denote this set as
+  \(\mathbf{x}\) where each \(x_i\) is a codeword
+\item
+  Generate a set \(\mathbf{y}\) where each \(y_i = x_j | j \neq i\) ie.
+  each word in \(\mathbf{y}\) maps to a random word in \(\mathbf{x}\)
+  that is not the same as itself
+\item
+  Generate a codeword corpus by replacing every \(x_i\) in reference
+  corpus with \(y_i\) (which will not be the same as \(x_i\))
+\end{enumerate}
+
+Then, to verify a detection method's validity, we can
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Provide the detector both corpuses (codeword and reference)
+\item
+  Make detector find codewords in codeword corpus
+\item
+  Compare against \(\mathbf{y}\) for retrieval rate
+\end{enumerate}
+
+However, this still leaves some questions open, including what reference
+corpus to choose, how adequate words can be chosen as codeword
+candidates, and how a baseline for codeword detection can be made. This
+will be addressed along the way.
+
+    First we get some hygiene \texttt{python} stuff out of the way and make
+our graphs pretty.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        
+        \PY{k+kn}{import} \PY{n+nn}{cPickle} \PY{k+kn}{as} \PY{n+nn}{pickle}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{use}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{ggplot}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \section{Synthetic Codeword Corpus
+Creation}\label{synthetic-codeword-corpus-creation}
+
+\subsection{Reference Corpus Choice}\label{reference-corpus-choice}
+
+We choose the WSJ Corpus from the PennTreebank to be the reference
+corpus due to the similarity in the content of the text and the data of
+potential TextIQ clients.
+
+A helper function is made in \texttt{lib.corpus\_parser} to use
+\texttt{nltk} to parse the WSJ corpus. Tip to future replications: use a
+symlink to link
+\texttt{LDC99T42-Treebank-3/package/treebank\_3/parsed/mrg/wsj} and
+\texttt{LDC99T42-Treebank-3/package/treebank\_3/parsed/mrg/brown} to
+\texttt{\textasciitilde{}/nltk\_data/corpora/ptb/wsj} and
+\texttt{\textasciitilde{}/nltk\_data/corpora/ptb/brown} so that
+\texttt{nltk} can parse the WSJ corpus directly.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c}{\PYZsh{} reads wsj corpus and saves all lines to all\PYZhy{}lines.pkl}
+        \PY{k+kn}{from} \PY{n+nn}{lib.corpus\PYZus{}parser} \PY{k+kn}{import} \PY{o}{*}
+        
+        \PY{n}{all\PYZus{}lines} \PY{o}{=} \PY{n}{parse\PYZus{}wsj}\PY{p}{(}\PY{p}{)}
+        \PY{n}{pickle}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{all\PYZus{}lines}\PY{p}{,} \PY{n+nb}{open}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{all\PYZhy{}lines.pkl}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{wb}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \subsection{Codeword Selection}\label{codeword-selection}
+
+We need a way to select \(|\mathbf{x}|\) codewords (in this case,
+\(|\mathbf{x}| = 100\) an arbitrary number base on intuition about the
+size of the corpus and usage patterns.)
+
+\subsubsection{TF-IDF}\label{tf-idf}
+
+A naive way to do this would be TF-IDF as was initially used where
+
+\begin{itemize}
+\tightlist
+\item
+  \(T_{x_i}\) is the number of times word \(x_i\) appeared in the entire
+  corpus
+\item
+  \(D_{x_i}\) is the number of documents \(x_i\) appeared in the entire
+  corpus
+\item
+  \(N_D\) is the number of documents in the entire corpus ie.
+\item
+  \(\mathrm{Rank}_{x_i} = \mathrm{TFIDF}_{x_i} = \left(\log{(T_{x_i}} + 1\right) * \left(\log{(1 + N_D / D_{x_i})} \right)\)
+  where the left term is the term frequency smoothed such that 0s won't
+  occur, and the right term is the inverse document frequency.
+\end{itemize}
+
+We select the top \(|\mathbf{x}|\) words. The intuition behind this
+method was to downweight terms that appeared in every document (such as
+``the'', ``a'', ``he''), and upweight rarer terms.
+
+However, this method was disappointing since it upweighted rare terms
+too much. In particular, note that the inverse document frequency
+portion of \(\mathrm{TFIDF}\) is a decreasing function. That means words
+appearing only 1 time is upweighted the most. Hence, a lot of names and
+esoteric words that only occur once were selected. The top words
+consisted of ``yeargin'', ``steinhardt'', ``corry'', ``psyllium''. We
+needed an alternative method that downweighted very frequent words,
+upweighted rarer words, but also \textbf{downweighted extremely rare
+words}.
+
+\subsubsection{Gamma Distribution}\label{gamma-distribution}
+
+A good way to do this was to use a Gamma distribution instead of the
+inverse document frequency measure. That means
+
+\(\mathrm{Rank}_{x_i} = \left(\log{(T_{x_i}} + 1\right) * \left(g(D_{x_i})\right)\)
+where \(g(y)\) is the Gamma distribution function fitted on a given
+\(\alpha\) and \(\beta\). Specifically, we can set \(\alpha\) and
+\(\beta\) such that the mode of the distribution is a certain proportion
+of documents (ie. this is the proportion of documents that ``important
+words'' should belong in) and the mean to be 2 times of that. Choosing
+\(\mathrm{Mode} = 0.075 * N_D = (\alpha-1)*\beta\) and hence
+\(\mathrm{Mean} = 0.15 * D = \alpha * \beta\), we make the assumption
+that important words should be present in around 7.5\% to 15\% of
+articles.
+
+This Gamma distribution could would like this:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{d} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{all\PYZus{}lines}\PY{p}{)}
+        \PY{n}{beta} \PY{o}{=} \PY{l+m+mf}{0.075} \PY{o}{*} \PY{n}{d}
+        \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.15} \PY{o}{*} \PY{n}{d} \PY{o}{/} \PY{n}{beta}
+        \PY{n}{loc} \PY{o}{=} \PY{l+m+mi}{0}
+        
+        \PY{k+kn}{from} \PY{n+nn}{scipy.stats} \PY{k+kn}{import} \PY{n}{gamma}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+        
+        \PY{n}{rv} \PY{o}{=} \PY{n}{gamma}\PY{p}{(}\PY{n}{a}\PY{o}{=}\PY{n}{alpha}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{n}{loc}\PY{p}{,} \PY{n}{scale}\PY{o}{=}\PY{n}{beta}\PY{p}{)}
+        \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2400}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{rv}\PY{o}{.}\PY{n}{pdf}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    This function upweights words that appear not so frequently, but
+downweights words that appear very rarely (along with words that appear
+frequently). The results turned out to be very reasonable for the WSJ
+corpus. Top words include ``bonds'', ``index'', ``japanese'', ``oil'',
+``traders''.
+
+This result should not be surprising given that TF-IDF is a measure
+meant for weighting words in a single document among many documents, not
+an aggregate measure across documents.
+
+This allows us to select \(\mathbf{x}\) by taking the top
+\(|\mathbf{x}| = 100\) words using \(\mathbf{\mathrm{Rank}}\).
+
+    \subsection{Generate Substitution Key}\label{generate-substitution-key}
+
+Now that we have \(\mathbf{x}\) we want to generate a set \(\mathbf{y}\)
+permuted version of \(\mathbf{x}\) such that \(y_i = x_j | j \neq i\)
+ie. each word in \(\mathbf{y}\) maps to a random word in \(\mathbf{x}\)
+that is not the same as itself. This is rather trivial, and we save the
+key in a pickle and a \texttt{.json} so that we can read it easily. We
+also present the substituted dictionary in the output below.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{from} \PY{n+nn}{lib.substitute} \PY{k+kn}{import} \PY{o}{*}
+        
+        \PY{n}{substitute\PYZus{}key} \PY{o}{=} \PY{n}{generate\PYZus{}substitute\PYZus{}key}\PY{p}{(}\PY{n}{all\PYZus{}lines}\PY{p}{)}
+        \PY{n}{pickle}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{substitute\PYZus{}key}\PY{p}{,} \PY{n+nb}{open}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{substitute\PYZhy{}key.pkl}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{wb}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        \PY{k+kn}{import} \PY{n+nn}{simplejson}
+        \PY{n}{f} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{substitute\PYZhy{}key.json}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{wb}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{simplejson}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{substitute\PYZus{}key}\PY{p}{,} \PY{n}{f}\PY{p}{)}
+        \PY{n}{f}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+        
+        \PY{k}{print}\PY{p}{(}\PY{n}{substitute\PYZus{}key}\PY{p}{)}
+\end{Verbatim}
+
+    \subsection{Codeword Corpus
+Generation}\label{codeword-corpus-generation}
+
+Now we can generate a codeword corpus by going through the reference
+corpus and replacing every occurence of word \(x_i\) with \(y_i\). We
+retain the original reference corpus and save both in pickles.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{all\PYZus{}lines\PYZus{}substituted} \PY{o}{=} \PY{n}{generate\PYZus{}substitute\PYZus{}corpus}\PY{p}{(}\PY{n}{all\PYZus{}lines}\PY{p}{,} \PY{n}{substitute\PYZus{}key}\PY{p}{)}
+        \PY{n}{pickle}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{all\PYZus{}lines\PYZus{}substituted}\PY{p}{,} \PY{n+nb}{open}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{corpus\PYZhy{}substituted.pkl}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{wb}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n}{pickle}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{all\PYZus{}lines}\PY{p}{,} \PY{n+nb}{open}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{corpus\PYZhy{}original.pkl}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{wb}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \section{Verification of Baseline Codeword
+Detection}\label{verification-of-baseline-codeword-detection}
+
+\subsection{Generate Embeddings}\label{generate-embeddings}
+
+Now we run both corpuses over \texttt{word2vec}. The code below by
+default reads in the models from storage. This is because I usually run
+the training on a computer other than my own, and usually on two
+different computers. However, if you decide to torture your computer,
+feel free to take around 12 hours on this step (based on the default
+parameters in \texttt{w2v.w2v}). The default parameters used are
+\texttt{model\ =\ gensim.models.Word2Vec(sentences,\ min\_count=5,\ workers=8,\ iter=300,\ window=15,\ size=300,\ negative=25)}
+as recommended by Jasneet.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k+kn}{from} \PY{n+nn}{w2v.w2v} \PY{k+kn}{import} \PY{o}{*}
+        
+        \PY{c}{\PYZsh{} all\PYZus{}lines\PYZus{}original = build\PYZus{}sentences(all\PYZus{}lines\PYZus{}original\PYZus{}filename)}
+        \PY{c}{\PYZsh{} all\PYZus{}lines\PYZus{}substituted = build\PYZus{}sentences(all\PYZus{}lines\PYZus{}substituted\PYZus{}filename)}
+        \PY{c}{\PYZsh{}}
+        \PY{c}{\PYZsh{} original\PYZus{}model = model\PYZus{}from\PYZus{}sentences(all\PYZus{}lines\PYZus{}original)}
+        \PY{c}{\PYZsh{} substituted\PYZus{}model = model\PYZus{}from\PYZus{}sentences(all\PYZus{}lines\PYZus{}substituted)}
+        \PY{c}{\PYZsh{}}
+        \PY{c}{\PYZsh{} original\PYZus{}model.save\PYZus{}word2vec\PYZus{}format(\PYZsq{}./models/corpus\PYZhy{}original\PYZhy{}w2v.mdl\PYZsq{}, binary=True)}
+        \PY{c}{\PYZsh{} substituted\PYZus{}model.save\PYZus{}word2vec\PYZus{}format(\PYZsq{}./models/corpus\PYZhy{}substituted\PYZhy{}w2v.mdl\PYZsq{}, binary=True)}
+        
+        \PY{n}{original\PYZus{}model} \PY{o}{=} \PY{n}{model\PYZus{}from\PYZus{}saved}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{./models/corpus\PYZhy{}original\PYZhy{}w2v.mdl}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{binary}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+        \PY{n}{substituted\PYZus{}model} \PY{o}{=} \PY{n}{model\PYZus{}from\PYZus{}saved}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{./models/corpus\PYZhy{}substituted\PYZhy{}w2v.mdl}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{binary}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+        
+        \PY{n}{substitute\PYZus{}key} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n+nb}{open}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{substitute\PYZhy{}key.pkl}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{rb}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \subsection{Finding Common Words}\label{finding-common-words}
+
+Then we find the common words in both corpuses. Since we are using a
+synthetic dataset, and there is always a one to one matching between
+\(\mathbf{x}\) and \(\mathbf{y}\), the two corpuses should contain the
+same vocabularies. However, this won't always be the case in actual
+situations.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k+kn}{from} \PY{n+nn}{comparison.similarity} \PY{k+kn}{import} \PY{o}{*}
+        \PY{n}{intersect\PYZus{}vocab} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{n}{substituted\PYZus{}model}\PY{o}{.}\PY{n}{vocab}\PY{p}{)}\PY{o}{.}\PY{n}{intersection}\PY{p}{(}\PY{n+nb}{set}\PY{p}{(}\PY{n}{original\PYZus{}model}\PY{o}{.}\PY{n}{vocab}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \subsection{Detecting Codewords}\label{detecting-codewords}
+
+We detect codewords by measuring, from the two corpuses, what a word is
+similar to.
+
+\begin{itemize}
+\tightlist
+\item
+  For each word \(w_i\), we find \(\mathbf{z}_{w_i, x, n}\), the top
+  \(n\) words that are similar to \(w_i\) as predicted by
+  \texttt{word2vec} in gensim's \texttt{most\_similar} method using the
+  \textbf{reference corpus}
+\item
+  For that same word \(w_i\) we find \(\mathbf{z}_{w_i, y, n}\) the top
+  \(n\) words that are similar to \(w_i\) as predicted by the same
+  method but using the \textbf{codeword corpus}
+\item
+  We find \(\mathbf{S}\), the intersection of \(\mathbf{z}_{w_i, x, n}\)
+  and \(\mathbf{z}_{w_i, y, n}\). In other words, every word in
+  \(S_i \in \mathbf{S}\) is defined by
+  \(S_i \in \{\mathbf{z}_{w_i, x, n} \cap \mathbf{z}_{w_i, y, n}\}\).
+\item
+  We record the length of the intersection, \(|\mathbf{S}|\), for each
+  word \(w_i\).
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{vocabs} \PY{o}{=} \PY{n}{generate\PYZus{}similarity\PYZus{}counts}\PY{p}{(}\PY{n}{original\PYZus{}model}\PY{p}{,} \PY{n}{substituted\PYZus{}model}\PY{p}{,} \PY{n}{intersect\PYZus{}vocab}\PY{p}{)}
+        \PY{n}{pickle}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{vocabs}\PY{p}{,} \PY{n+nb}{open}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{vocabs\PYZhy{}compared.pkl}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{wb}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    Intuition tells us that codewords are used differently in the codeword
+corpus than in the reference corpus. In that case \(|\mathbf{S}|\)
+should be small for codewords and large for non-codewords. Non-codewords
+are used similarly in both reference corpus and codeword corpus, while
+codewords are used differently in both corpuses. We can use this to
+detect codewords.
+
+    \section{Results}\label{results}
+
+\subsection{Codeword Isolation}\label{codeword-isolation}
+
+We find that we were able to isolate words that have few similarity
+intersection counts. The distribution of similarity intersection counts
+across all words look normal with the exception of a cluster of
+codewords at the left tail.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c}{\PYZsh{} plot results}
+        \PY{n}{codewords} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{vocabs}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{n}{vocabs}\PY{o}{.}\PY{n}{get}\PY{p}{)}
+        \PY{n}{positive} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{n}{false\PYZus{}positive} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{1}
+        \PY{n}{results} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+        
+        \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{codewords}\PY{p}{:}
+            \PY{k}{if} \PY{n}{word} \PY{o+ow}{in} \PY{n}{substitute\PYZus{}key}\PY{p}{:}
+                \PY{n}{positive} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+            \PY{k}{else}\PY{p}{:}
+                \PY{n}{false\PYZus{}positive} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+            \PY{n}{results}\PY{p}{[}\PY{n}{count}\PY{p}{]} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s}{\PYZsq{}}\PY{l+s}{count}\PY{l+s}{\PYZsq{}}\PY{p}{:} \PY{n}{count}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{positive}\PY{l+s}{\PYZsq{}}\PY{p}{:} \PY{n}{positive}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{false\PYZus{}positive}\PY{l+s}{\PYZsq{}}\PY{p}{:} \PY{n}{false\PYZus{}positive}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{false\PYZus{}negative}\PY{l+s}{\PYZsq{}}\PY{p}{:} \PY{n+nb}{len}\PY{p}{(}\PY{n}{substitute\PYZus{}key}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{positive}\PY{p}{\PYZcb{}}
+            \PY{n}{count} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+        
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k+kn}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plot}
+        \PY{n}{matplotlib}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{use}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{ggplot}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c}{\PYZsh{} distribution of comparison counts}
+        \PY{n}{plot}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{vocabs}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}
+        \PY{n}{plot}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Codeword Development Dataset_files/Codeword Development Dataset_21_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We can check that the cluster of words at the left tail are indeed
+codewords. We first sort the all words by similarity count in ascending
+order. The words with fewest similarity counts will be at the front.
+
+Then, we iterate through the words and record (for every count)
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{positive}: number of actual codewords correctly identified
+\item
+  \texttt{false\_positive}: number of words wrongly classified as
+  codeword
+\item
+  \texttt{false\_negative}: number of actual codewords that were not
+  detected
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c}{\PYZsh{} plot results}
+        \PY{n}{dataframe} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{o}{.}\PY{n}{from\PYZus{}dict}\PY{p}{(}\PY{n}{results}\PY{p}{,} \PY{n}{orient}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{index}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{dataframe}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{count}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{positive}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{false\PYZus{}positive}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{false\PYZus{}negative}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{xlim}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{200}\PY{p}{]}\PY{p}{,} \PY{n}{ylim}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
+        \PY{n}{plot}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Codeword Development Dataset_files/Codeword Development Dataset_23_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    As we increase the counts. We find that at a count of around 100, we
+have a very high positive rate with a very low false positive and false
+negative rate. Even lower false positive rates can be achieved by
+sacrifising some false negative rates.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{threshold} \PY{o}{=} \PY{l+m+mi}{100}
+        \PY{n}{positive} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{n}{false\PYZus{}positive} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{1}
+        
+        \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{codewords}\PY{p}{:}
+            \PY{k}{if} \PY{n}{word} \PY{o+ow}{in} \PY{n}{substitute\PYZus{}key}\PY{p}{:}
+                \PY{n}{positive} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+            \PY{k}{else}\PY{p}{:}
+                \PY{n}{false\PYZus{}positive} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+            \PY{n}{count} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+            
+            \PY{k}{if} \PY{n}{count} \PY{o}{\PYZgt{}} \PY{l+m+mi}{100}\PY{p}{:}
+                \PY{k}{break}
+        
+        \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{positive: }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{false positive: }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{false negative: }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{positive}\PY{p}{,} \PY{n}{false\PYZus{}positive}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{substitute\PYZus{}key}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{positive}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+positive: 99
+false positive: 1
+false negative: 1
+    \end{Verbatim}
+
+    \subsection{Codeword Recovery}\label{codeword-recovery}
+
+It is also meaningful to see if we can successfully recover the original
+words given the codewords. That is, given \(\mathbf{y}\) and
+\(\mathbf{x}\), can we successfully produce a function that matches each
+\(y_i\) to each \(x_i\).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k}{def} \PY{n+nf}{check\PYZus{}substitution}\PY{p}{(}\PY{n}{substituted\PYZus{}model}\PY{p}{,} \PY{n}{original\PYZus{}model}\PY{p}{,} \PY{n}{substituted\PYZus{}word}\PY{p}{,} \PY{n}{original\PYZus{}word}\PY{p}{,} \PY{n}{n}\PY{p}{)}\PY{p}{:}
+            \PY{n}{similar\PYZus{}substituted} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{(}\PY{n}{word}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{substituted\PYZus{}model}\PY{o}{.}\PY{n}{most\PYZus{}similar}\PY{p}{(}\PY{n}{substituted\PYZus{}word}\PY{p}{,} \PY{n}{topn}\PY{o}{=}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+            \PY{n}{similar\PYZus{}original} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{(}\PY{n}{word}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{original\PYZus{}model}\PY{o}{.}\PY{n}{most\PYZus{}similar}\PY{p}{(}\PY{n}{original\PYZus{}word}\PY{p}{,} \PY{n}{topn}\PY{o}{=}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+            \PY{n}{intersection} \PY{o}{=} \PY{n}{similar\PYZus{}substituted} \PY{o}{\PYZam{}} \PY{n}{similar\PYZus{}original}
+            \PY{k}{return} \PY{n+nb}{len}\PY{p}{(}\PY{n}{intersection}\PY{p}{)}
+\end{Verbatim}
+
+    We remind the reader that the this was the original substitution key.
+This means, for example, that the word \texttt{stake} in \(\mathbf{x}\)
+has been replaced by the word \texttt{credit} in \(\mathbf{y}\).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{k}{print}\PY{p}{(}\PY{n}{substitute\PYZus{}key}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{u'stake': u'credit', u'office': u'california', u'show': u'state', u'september': u'chicago', u'dollar': u'drop', u'trade': u'8', u'london': u'system', u'committee': u'home', u'japan': u'takeover', u'issues': u'association', u'cut': u'country', u'system': u'him', u'former': u'san', u'bush': u'dow', u'production': u'union', u'systems': u'point', u'treasury': u'index', u'policy': u'economic', u'8': u'foreign', u'street': u'bill', u'bonds': u'show', u'bid': u'monday', u'him': u'dollar', u'association': u'fiscal', u'notes': u'debt', u'drop': u'administration', u'she': u'funds', u'house': u'production', u'japanese': u'offering', u'computer': u'tax', u'home': u'west', u'insurance': u'traders', u'index': u'computer', u'monday': u'agency', u'chicago': u'rates', u'research': u'notes', u'state': u'fund', u'firms': u'former', u'issue': u'court', u'august': u'life', u'power': u'demand', u'city': u'my', u'friday': u'bid', u'takeover': u'volume', u'california': u'program', u'news': u'she', u'debt': u'bush', u'loans': u'news', u'country': u'issues', u'losses': u'august', u'british': u'congress', u'foreign': u'case', u'credit': u'decline', u'economic': u'oil', u'industrial': u'power', u'point': u'losses', u'wall': u'research', u'third-quarter': u'economy', u'decline': u'japanese', u'law': u'assets', u'her': u'friday', u'union': u'systems', u'west': u'issue', u'due': u'committee', u'program': u'firms', u'rates': u'london', u'fiscal': u'annual', u'life': u'growth', u'selling': u'third-quarter', u'offering': u'due', u'funds': u'treasury', u'volume': u'points', u'fund': u'buying', u'gain': u'banks', u'demand': u'nov.', u'analyst': u'wall', u'buying': u'analyst', u'case': u'contract', u'nov.': u'trade', u'bill': u'japan', u'growth': u'stocks', u'my': u'selling', u'annual': u'british', u'san': u'gain', u'tax': u'cut', u'contract': u'loans', u'court': u'stake', u'agency': u'september', u'administration': u'bonds', u'traders': u'city', u'department': u'house', u'economy': u'office', u'oil': u'street', u'congress': u'her', u'stocks': u'law', u'jones': u'department', u'assets': u'industrial', u'points': u'insurance', u'banks': u'policy', u'dow': u'jones'\}
+    \end{Verbatim}
+
+    This means that among the vocabulary in \(\mathbf{x}\) and
+\(\mathbf{y}\), the ones that should produce the most similarities are
+the original substitutions. For example, since \texttt{credit} was
+substituted with \texttt{stake}, this pair should have many matches out
+of 500 words.
+
+Contrast this with \texttt{credit} and \texttt{california}, which is not
+an original codeword pair and hence won't have as high a number of
+matches.
+
+We can exploit this to recover the original codewords.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{check\PYZus{}substitution}\PY{p}{(}\PY{n}{substituted\PYZus{}model}\PY{p}{,} \PY{n}{original\PYZus{}model}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{credit}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{stake}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:} 385
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{check\PYZus{}substitution}\PY{p}{(}\PY{n}{substituted\PYZus{}model}\PY{p}{,} \PY{n}{original\PYZus{}model}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{credit}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{california}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} 31
+\end{Verbatim}
+        
+    We produce a \texttt{substitution\_recovered} that is the same format as
+the original \texttt{substitute\_key}, but recovered without knowledge
+of the \texttt{substitute\_key}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{codeword\PYZus{}count} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{substitute\PYZus{}key}\PY{p}{)}
+         
+         \PY{n}{substitution\PYZus{}recovered} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+         
+         \PY{k}{for} \PY{n}{original\PYZus{}word} \PY{o+ow}{in} \PY{n}{codewords}\PY{p}{[}\PY{p}{:}\PY{n}{codeword\PYZus{}count}\PY{p}{]}\PY{p}{:}    
+             \PY{n}{max\PYZus{}count} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{n}{max\PYZus{}substitute} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdq{}}
+             \PY{k}{for} \PY{n}{substitute\PYZus{}word} \PY{o+ow}{in} \PY{n}{substitute\PYZus{}key}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                 
+                 \PY{n}{count} \PY{o}{=} \PY{n}{check\PYZus{}substitution}\PY{p}{(}\PY{n}{substituted\PYZus{}model}\PY{p}{,} \PY{n}{original\PYZus{}model}\PY{p}{,} \PY{n}{substitute\PYZus{}word}\PY{p}{,} \PY{n}{original\PYZus{}word}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{)}
+                 \PY{k}{if}\PY{p}{(}\PY{n}{count} \PY{o}{\PYZgt{}} \PY{n}{max\PYZus{}count}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{max\PYZus{}count} \PY{o}{=} \PY{n}{count}
+                     \PY{n}{max\PYZus{}substitute} \PY{o}{=} \PY{n}{substitute\PYZus{}word}
+             
+             \PY{n}{substitution\PYZus{}recovered}\PY{p}{[}\PY{n}{original\PYZus{}word}\PY{p}{]} \PY{o}{=} \PY{n}{max\PYZus{}substitute}
+         
+         \PY{k}{print}\PY{p}{(}\PY{n}{substitution\PYZus{}recovered}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{u'stake': u'credit', u'office': u'california', u'show': u'state', u'september': u'chicago', u'dollar': u'drop', u'trade': u'8', u'london': u'system', u'committee': u'home', u'japan': u'takeover', u'issues': u'association', u'cut': u'country', u'analyst': u'wall', u'bush': u'dow', u'program': u'firms', u'systems': u'point', u'treasury': u'index', u'policy': u'economic', u'8': u'foreign', u'bonds': u'show', u'bid': u'monday', u'him': u'dollar', u'association': u'fiscal', u'notes': u'debt', u'drop': u'administration', u'she': u'funds', u'house': u'production', u'japanese': u'offering', u'street': u'bill', u'home': u'west', u'insurance': u'traders', u'index': u'computer', u'congress': u'her', u'chicago': u'rates', u'research': u'notes', u'state': u'fund', u'firms': u'former', u'issue': u'court', u'disgruntled': u'credit', u'august': u'life', u'power': u'demand', u'city': u'my', u'friday': u'bid', u'takeover': u'volume', u'california': u'program', u'news': u'she', u'debt': u'bush', u'loans': u'news', u'country': u'issues', u'losses': u'august', u'british': u'congress', u'foreign': u'case', u'credit': u'decline', u'economic': u'oil', u'due': u'committee', u'industrial': u'power', u'point': u'losses', u'wall': u'research', u'system': u'him', u'decline': u'japanese', u'law': u'assets', u'her': u'friday', u'union': u'systems', u'west': u'issue', u'third-quarter': u'economy', u'production': u'union', u'rates': u'london', u'life': u'growth', u'selling': u'third-quarter', u'growth': u'stocks', u'offering': u'due', u'funds': u'treasury', u'volume': u'points', u'fund': u'buying', u'gain': u'banks', u'demand': u'nov.', u'former': u'san', u'buying': u'analyst', u'case': u'contract', u'nov.': u'trade', u'bill': u'japan', u'computer': u'tax', u'my': u'selling', u'annual': u'british', u'san': u'gain', u'tax': u'cut', u'contract': u'loans', u'court': u'stake', u'agency': u'september', u'administration': u'bonds', u'traders': u'city', u'department': u'house', u'economy': u'office', u'oil': u'street', u'monday': u'agency', u'stocks': u'law', u'fiscal': u'annual', u'assets': u'industrial', u'points': u'insurance', u'banks': u'policy', u'dow': u'jones'\}
+    \end{Verbatim}
+
+    Turns out we were able to reproduce the matching between the codewords
+and the original words very successfully.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c}{\PYZsh{} precision = number of correct pairings out of constructed pairings}
+         
+         \PY{n}{precision} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{k}{for} \PY{n}{original}\PY{p}{,} \PY{n}{substitute} \PY{o+ow}{in} \PY{n}{substitution\PYZus{}recovered}\PY{o}{.}\PY{n}{iteritems}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if} \PY{n}{original} \PY{o+ow}{in} \PY{n}{substitute\PYZus{}key} \PY{o+ow}{and} \PY{n}{substitute} \PY{o}{==} \PY{n}{substitute\PYZus{}key}\PY{p}{[}\PY{n}{original}\PY{p}{]}\PY{p}{:}
+                 \PY{n}{precision} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+         
+         \PY{n}{precision}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:} 99
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c}{\PYZsh{} recall = number of correct pairings out of original pairings}
+         
+         \PY{n}{recall} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{k}{for} \PY{n}{original}\PY{p}{,} \PY{n}{substitute} \PY{o+ow}{in} \PY{n}{substitute\PYZus{}key}\PY{o}{.}\PY{n}{iteritems}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if} \PY{n}{original} \PY{o+ow}{in} \PY{n}{substitution\PYZus{}recovered} \PY{o+ow}{and} \PY{n}{substitute} \PY{o}{==} \PY{n}{substitution\PYZus{}recovered}\PY{p}{[}\PY{n}{original}\PY{p}{]}\PY{p}{:}
+                 \PY{n}{recall} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                 
+         \PY{n}{recall}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:} 99
+\end{Verbatim}
+        
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
